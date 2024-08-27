@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- let's import our stylesheet (found in public/css/styles.css)-->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+
+    <script>
+const vehicles = [
+    { name: "Maruti Suzuki Alto", speed: 140, fuelEfficiency: 22.05, tankCapacity: 35, maxRange: 771.75 },
+    { name: "Hyundai i20", speed: 180, fuelEfficiency: 20.35, tankCapacity: 37, maxRange: 753.05 },
+    { name: "Tata Nexon", speed: 180, fuelEfficiency: 17.57, tankCapacity: 44, maxRange: 772.68 },
+    { name: "Honda City", speed: 180, fuelEfficiency: 17.8, tankCapacity: 40, maxRange: 712.00 },
+    { name: "Mahindra Thar", speed: 155, fuelEfficiency: 15.2, tankCapacity: 57, maxRange: 866.40 },
+    { name: "Toyota Innova Crysta", speed: 179, fuelEfficiency: 11.25, tankCapacity: 55, maxRange: 618.75 },
+    { name: "Kia Seltos", speed: 170, fuelEfficiency: 16.8, tankCapacity: 50, maxRange: 840.00 },
+    { name: "Renault Kwid", speed: 150, fuelEfficiency: 22.3, tankCapacity: 28, maxRange: 624.40 },
+    { name: "Ford EcoSport", speed: 182, fuelEfficiency: 15.9, tankCapacity: 52, maxRange: 826.80 },
+    { name: "Tata Tiago", speed: 150, fuelEfficiency: 23.84, tankCapacity: 35, maxRange: 834.40 }
+];
+
+function calculateDistance() {
+    const hours = parseFloat(document.getElementById("hours").value);
+    const minutes = parseFloat(document.getElementById("minutes").value);
+    const vehicleIndex = parseInt(document.getElementById("vehicle").value);
+    
+    const timeInHours = hours + (minutes / 60);
+    const vehicle = vehicles[vehicleIndex];
+    const distance = timeInHours * vehicle.speed;
+
+    let resultHtml = `<p>The ${vehicle.name} can travel approximately ${distance.toFixed(2)} km in the given time.</p>`;
+    resultHtml += "<h3>Comparison with other vehicles:</h3><ul>";
+    
+    vehicles.forEach((v, index) => {
+        if (index !== vehicleIndex) {
+            const otherDistance = timeInHours * v.speed;
+            resultHtml += `<li>${v.name} can travel approximately ${otherDistance.toFixed(2)} km.</li>`;
+        }
+    });
+
+    resultHtml += "</ul>";
+    document.getElementById("result").innerHTML = resultHtml;
+}
+
+
+
+
+    </script>
+  </head>
+
+  <!-- you can also specify styles straight in html! Let's use Arial and gray text on this page.-->
+  <body style="font-family: Arial; color: #333333">
+    <header
+      style="background-color:blue; padding: 15px; text-align: center"
+    >
+      <h1 style="color: white;">Enter Time, Get Distance!</h1>
+    </header>
+
+    <div class="site-view">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/a">Time base</a>
+       <!--<a href="/c">Sepia Rabbit</a>--> 
+      </nav>
+
+      <main>
+
+        <div class="container"><br>
+          <form id="distanceForm">
+              <label for="hours">Time in Hours:</label>
+              <input type="number" id="hours" name="hours" required>
+  
+              <label for="minutes">Time in Minutes:</label>
+              <input type="number" id="minutes" name="minutes" required>
+  
+              <label for="vehicle">Choose a Vehicle:</label>
+              <select id="vehicle" name="vehicle" required>
+                  <option value="0">Maruti Suzuki Alto</option>
+                  <option value="1">Hyundai i20</option>
+                  <option value="2">Tata Nexon</option>
+                  <option value="3">Honda City</option>
+                  <option value="4">Mahindra Thar</option>
+                  <option value="5">Toyota Innova Crysta</option>
+                  <option value="6">Kia Seltos</option>
+                  <option value="7">Renault Kwid</option>
+                  <option value="8">Ford EcoSport</option>
+                  <option value="9">Tata Tiago</option>
+              </select><br><br>
+  
+              <button type="button" onclick="calculateDistance()">Calculate Distance</button>
+          </form>
+  
+          <div id="result"></div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- <h2>This rabbit is very monochromatic and serious.</h2>
+        <img
+          src="/images/BWbunny.jpg"
+          alt="a greyscale rabbit"
+          class="responsive centered"
+        />
+        <p>
+          Photo credits:
+          <a href="https://unsplash.com/photos/u_kMWN-BWyU"
+            >Satyabratasm on Unsplash
+          </a>
+        </p>-->
+      </main>
+
+      <footer>
+        <h2>About</h2>
+        <p>
+          This is some example code prepared for CS160: User Interface Design
+          &amp; Development, Spring 2024. It was built by Nate Weinman, Shm
+          Almeda, and Timothy J. Aveni. This assignment is made by Apoorv Singh
+        </p>
+      </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+</html>
